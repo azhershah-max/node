@@ -32,6 +32,9 @@
         .icon-spacing {
             margin-right: 3px;
         }
+        .button{
+         width:100%;   
+        }
     </style>
 
 </head>
@@ -81,7 +84,7 @@
                 </div>
             </div>
 
-            <div class="notification is-danger" style="text-align:center;margin-top:15px;margin-bottom:0px">
+            <div class="notification is-warning" style="text-align:center;margin-top:15px;margin-bottom:0px">
                 <button class="delete"></button>
                 This site is <strong>Under construction</strong>, and will soon be live for use. You can use it to
                 download videos from youtube free in different formats.
@@ -103,6 +106,12 @@
             
             <div class='content is-centered column otherFormats-container is-hidden' style='padding-top:0px'>
                 <h2>Other Formats:</h2>
+                
+                 <div class="notification is-danger" style="text-align:center;margin-top:15px;margin-bottom:0px">
+                <button class="delete"></button>
+                <strong>Make it sure!</strong> these formats only has audio or video, the format that has video will not have audio and vice-versa.
+            </div>
+                
                 <div class="table-container"><table class="table is-bordered">
                         <tbody class='otherFormats-data'></tbody>
                     </table>
