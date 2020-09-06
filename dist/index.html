@@ -1,1 +1,35 @@
-This is simple html file
+<html>
+  <head>
+    <title>This is simple Nodejs Module</title>
+  </head>
+  <body>
+    <div>
+        <input type='url' id='url' value='https://www.youtube.com/watch?v=hQAu0YEIF0g'/>
+      <button id='submit'>Fetch Video Data</button>
+    </div>
+    <div id='root'></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+    $(document).ready(function(){
+      var api = 'https://heuristic-ritchie-985b23.netlify.app/.netlify/functions/api?id=';
+      async function fetchData() {
+                var myHeaders = new Headers();
+                myHeaders.append("Content-Type", "application/json");
+                let response = await fetch(api + $('#url').val(), {
+                    headers: myHeaders,
+                    method: "GET",
+                });
+                let data = await response.json();
+                return data;
+            }
+
+            $('#submit').click(function(){
+              fetchData().then((data) => {
+              console.log(data)
+            });
+            })
+    });
+    
+    </script>
+  </body>
+</html>
