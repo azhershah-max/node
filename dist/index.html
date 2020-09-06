@@ -217,7 +217,7 @@
                     
                     for (i = 0; i < data.otherFormats.length; i++) {
                         var of = data.otherFormats[i];
-                        var ofdetails = "<tr><td><a href='"+of.url+"'><button class='button is-danger'>Download "+of.qualityLabel+"."+of.mimeType+"</button></a></td></tr>";
+                        var ofdetails = "<tr><td><a href='"+of.url+"'><button class='button is-danger'>Download "+of.qualityLabel ? of.qualityLabel : "audio-file"+"."+of.mimeType.match(/(?:.*\/)(.*?)(?:;.*)/)[1]+"</button></a></td></tr>";
                         $('.otherFormats-data').append(ofdetails);
                         $('.otherFormats-container').removeClass('is-hidden');
                     }
