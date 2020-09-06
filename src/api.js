@@ -1,8 +1,10 @@
 const express = require("express");
 const serverless = require("serverless-http");
 const ytdl = require('ytdl-core');
+const cors = require('cors');
 
 const app = express();
+app.use(cors());
 const router = express.Router();
 
 function formatBytes(bytes, decimals = 2) {
