@@ -5,6 +5,8 @@ const fbvid = require('fbvideos');                                              
 const path = require('path');                                                   //      To get path of any file
 const findRemoveSync = require('find-remove');                                  //      To delete un-nacessary file created
 const cron = require('node-cron');                                              //      Set Corn Jobs in Node
+var JavaScriptObfuscator = require('javascript-obfuscator');                    //      To Obfuscate Javascript Code
+const fetch = require('node-fetch');                                            //      Fetch JSON Data
 
 const app = express();
 
@@ -40,7 +42,7 @@ cron.schedule('*/1 * * * *', () => {
     console.log(result);
 });
     
-app.get('/', async (req, res) => {
+app.get('/app', async (req, res) => {
     //res.sendFile(path.join(__dirname + '/index.html'));
     res.write('No data in Root Directory !');
     res.end();
@@ -53,7 +55,7 @@ const funArray = {};
         funArray.whatsapp = '+923037465988, +447864615562';
         funArray.methodAllowed = 'GET, POST, OPTION, DELETE';
         
-app.get('/ytapi', async (req, res) => {
+app.get('/app/youtube', async (req, res) => {
     res.header("Content-Type", 'application/json');
     res.setHeader('Access-Control-Allow-Origin', '*');
     
@@ -89,7 +91,7 @@ app.get('/ytapi', async (req, res) => {
     }
 })
 
-app.get('/youtube', async (req, res) => {
+app.get('/app/ytapi', async (req, res) => {
     res.header("Content-Type", 'application/json');
     res.setHeader('Access-Control-Allow-Origin', '*');
     
@@ -108,7 +110,7 @@ app.get('/youtube', async (req, res) => {
     }
 })
 
-app.get('/facebook', async (req, res) => {
+app.get('/app/facebook', async (req, res) => {
     res.header("Content-Type", 'application/json');
     res.setHeader('Access-Control-Allow-Origin', '*');
     
@@ -139,4 +141,4 @@ app.get('/facebook', async (req, res) => {
     }
 })
 
-app.listen(3000, ()=>{console.log('Server is at http://localhost:3000')})
+app.listen()
