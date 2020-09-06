@@ -211,7 +211,7 @@
                     console.log(data);
                     for (i = 0; i < data.videoaudio.length; i++) {
                         var video = data.videoaudio[i];
-                        var details = "<td><a target='_blank' href='"+video.url+"'><button class='button is-danger'>Download "+video.qualityLabel+"."+video.container+"</button></a></td>";
+                        var details = "<td><a target='_blank' href='"+video.url+"'><button class='button is-warning is-rounded'>Download "+video.qualityLabel+"."+video.container+"</button></a></td>";
                         $('.videoaudio-data').append(details);
                         $('.videoaudio-container').removeClass('is-hidden');
                     }
