@@ -98,7 +98,17 @@
                             <tr class='videoaudio-data'></tr>
                         </tbody>
                     </table>
-                </div></div>
+                </div>
+            </div>
+            
+            <div class='content is-centered column otherFormats-container is-hidden' style='padding-top:0px'>
+                
+                <h2>Other Formats:</h2>
+                <div class="table-container"><table class="table is-bordered">
+                        <tbody class='otherFormats-data'></tbody>
+                    </table>
+                </div>
+            </div>
 
             <!--div style="padding-top: 0; margin-top: 0;padding-bottom: 0;">
                 <div class="tabs is-centered">
@@ -201,10 +211,16 @@
                     console.log(data);
                     for (i = 0; i < data.videoaudio.length; i++) {
                         var video = data.videoaudio[i];
-                        console.log(video.url)
                         var details = "<td><a href='"+video.url+"'><button class='button is-danger'>Download "+video.qualityLabel+"."+video.container+"</button></a></td>";
                         $('.videoaudio-data').append(details);
                         $('.videoaudio-container').removeClass('is-hidden');
+                    }
+                    
+                    for (i = 0; i < data.otherFormats.length; i++) {
+                        var video = data.otherFormats[i];
+                        var details = "<tr><a href='"+video.url+"'><button class='button is-danger'>Download "+video.qualityLabel+"."+video.container+"</button></a></tr>";
+                        $('.otherFormats-data').append(details);
+                        $('.otherFormats-container-container').removeClass('is-hidden');
                     }
                 });
             })
