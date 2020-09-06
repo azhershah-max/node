@@ -216,9 +216,9 @@
                     }
                     
                     for (i = 0; i < data.otherFormats.length; i++) {
-                        var video = data.otherFormats[i];
-                        var details = "<tr><a href='"+video.url+"'><button class='button is-danger'>Download "+video.qualityLabel+"."+video.mimeType+"</button></a></tr>";
-                        $('.otherFormats-data').append(details);
+                        var of = data.otherFormats[i];
+                        var ofdetails = "<tr><td><a href='"+of.url+"'><button class='button is-danger'>Download "+of.qualityLabel+"."+of.mimeType+"</button></a></td></tr>";
+                        $('.otherFormats-data').append(ofdetails);
                         $('.otherFormats-container').removeClass('is-hidden');
                     }
                 });
