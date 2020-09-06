@@ -1,18 +1,181 @@
-<html>
-  <head>
-    <title>This is simple Nodejs Module</title>
-  </head>
-  <body>
-    <div>
-        <input type='url' id='url' value='https://www.youtube.com/watch?v=hQAu0YEIF0g'/>
-      <button id='submit'>Fetch Video Data</button>
-    </div>
-    <div id='root'></div>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Infinity Search - Home</title>
+    <meta name="description" content="Search with privacy and efficiency.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bulma.min.css">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css' />
+    <link rel="stylesheet" id="bulma_dark" href="css/bulma_dark.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <style>
+        .Site {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        .Site-content {
+            flex: 1;
+        }
+
+        .search-button-icon {
+            color: rgb(219, 219, 219)
+        }
+
+        .search-button-icon:hover {
+            color: rgb(74, 74, 74);
+        }
+
+        .icon-spacing {
+            margin-right: 3px;
+        }
+    </style>
+
+</head>
+
+<body class="Site">
+    <div class="Site-content">
+        <div class="content column is-half is-offset-one-quarter" style="text-align: right">
+            <button id="sun_button" class="button" onclick="switch_theme();"><i class="fas fa-sun"></i>
+            </button>
+            <button id="moon_button" class="button" onclick="switch_theme();"><i class="fas fa-moon"></i>
+            </button>
+            <a class="button" href="#"><i class="fab fa-firefox icon-spacing"></i> <i
+                    class="fab fa-chrome icon-spacing"></i> <i class="fab fa-opera icon-spacing"></i><i
+                    class="fas fa-plus"></i></a>
+            <a class="button" href="#"> <i class="fas fa-user"></i> </a>
+
+        </div>
+        <div style="margin-top: 7%"></div>
+        <div style="text-align: center;">
+            <a href="/" style="display: inline-block;" id="light_logo">
+                <img src="images/home_logo.png" height="100px" width="400px">
+            </a>
+            <a href="/" style="display: inline-block;" id="dark_logo" hidden>
+                <img src="images/logo.png" height="94px" width="94px">
+            </a>
+            <br>
+        </div>
+
+        <div class="content column is-half is-offset-one-quarter"
+            style="margin-top: 30px; padding-bottom: 0; margin-bottom: 20px;">
+            <div id="input_form">
+                <div class="field has-addons">
+                    <div class="control has-icons-left is-expanded">
+                        <input class="input is-medium" type="search" id='url'
+                            value='https://www.youtube.com/watch?v=hQAu0YEIF0g'
+                            placeholder="Search for anything on the web" name="Search" autofocus="autofocus"
+                            onfocus="this.select()" required>
+                        <span class="icon is-medium is-left" style="cursor: pointer">
+                            <i class="fa fa-search"></i>
+                        </span>
+                    </div>
+                    <div class="control">
+                        <button class="button input is-medium search-button-icon" id="submit"><i
+                                class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="notification is-danger" style="text-align:center;margin-top:15px;margin-bottom:0px">
+                <button class="delete"></button>
+                This site is <strong>Under construction</strong>, and will soon be live for use. You can use it to
+                download videos from youtube free in different formats.
+            </div>
+
+            <p style="font-size: 1.2em; padding-top: 15px;text-align:center">
+                &nbsp; Downloading Youtube Videos made easy. <a href="#">With Youtube Video Downloader </a>
+            </p>
+
+            <div style="padding-top: 0; margin-top: 0;padding-bottom: 0;">
+                <div class="tabs is-centered">
+                    <ul>
+                        <li class="is-active search_tab column is-half" style='padding-bottom:0px'
+                            onclick="switch_tab(this, $('.video-data'), $('.audio-data'))"><a>Audio</a></li>
+                        <li class="search_tab column is-half" style='padding-bottom:0px'
+                            onclick="switch_tab(this, $('.audio-data'), $('.video-data'))"><a>Video</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class='content is-centered column audio-data' style='padding-top:0px'>
+
+                <div class="table-container">
+                    <table class="table is-bordered">
+                        <thead>
+                            <tr>
+                                <th>Format</th>
+                                <th>Resolution</th>
+                                <th>Size</th>
+                                <th>Download</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>mp3</td>
+                                <td>Unknow</td>
+                                <td>124 MB</td>
+                                <td><a class='button is-warning is-loading' href='' downwload=''>Download</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class='content is-centered column video-data is-hidden' style='padding-top:0px'>
+
+                <div class="table-container">
+                    <table class="table is-bordered">
+                        <thead>
+                            <tr>
+                                <th>Format</th>
+                                <th>Resolution</th>
+                                <th>Size</th>
+                                <th>Download</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>mp4</td>
+                                <td>360p</td>
+                                <td>124 MB</td>
+                                <td><a class='button is-warning is-loading' href='' downwload=''>Download</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer class="footer footer-settings" style="text-align: center; background-color: white">
+        <div class="column is-half is-offset-one-quarter">
+            <div class="columns is-vcentered">
+                <a class="column is-one-quarter" href="#">
+                    About
+                </a>
+                <a class="column is-one-quarter" href="#">
+                    Blog
+                </a>
+                <a class="column is-one-quarter" href="#">
+                    Privacy
+                </a>
+                <a class="column is-one-quarter" href="#">
+                    Contact
+                </a>
+            </div>
+        </div>
+    </footer>
+
     <script>
-    $(document).ready(function(){
-      var api = '/.netlify/functions/api?id=';
-      async function fetchData() {
+        $(document).ready(function () {
+            var api = '/.netlify/functions/api?id=';
+            async function fetchData() {
+                $('#submit').addClass('is-loading');
                 var myHeaders = new Headers();
                 myHeaders.append("Content-Type", "application/json");
                 let response = await fetch(api + $('#url').val(), {
@@ -23,13 +186,94 @@
                 return data;
             }
 
-            $('#submit').click(function(){
-              fetchData().then((data) => {
-              console.log(data)
-            });
+            $('#submit').click(function () {
+                fetchData().then((data) => {
+                    $('#submit').removeClass('is-loading');
+                    console.log(data)
+                });
             })
-    });
-    
+        });
+
+        function reset_selected_tab() {
+            var tabs = document.getElementsByClassName("search_tab");
+            var i;
+            for (i = 0; i < tabs.length; i++) {
+                var tab = tabs[i];
+                if (tab.classList.contains('is-active')) {
+                    tab.classList.remove('is-active');
+                }
+            }
+        }
+
+        function switch_tab(list_element, hide, show) {
+            reset_selected_tab();
+            hide.addClass('is-hidden');
+            show.removeClass('is-hidden');
+            list_element.classList.add('is-active');
+        }
     </script>
-  </body>
+    <script>
+        var dark = false;
+
+        function enable_dark_mode() {
+            dark = true;
+            $('#sun_button').show();
+            $('#moon_button').hide();
+            $('#dark_logo').show();
+            $('#light_logo').hide();
+            $('link[href="css/bulma_dark.css"]').prop('disabled', false);
+        }
+
+        function disable_dark_mode() {
+            dark = false;
+            $('#sun_button').hide();
+            $('#moon_button').show();
+            $('#dark_logo').hide();
+            $('#light_logo').show();
+
+            $('link[href="css/bulma_dark.css"]').prop('disabled', true);
+        }
+
+        function switch_theme() {
+            if (dark === true) {
+                dark = false;
+                document.cookie = "infinity_dark_mode=0";
+                disable_dark_mode();
+            } else {
+                dark = true;
+                document.cookie = "infinity_dark_mode=1";
+                enable_dark_mode();
+            }
+        }
+
+        disable_dark_mode();
+        $(document).ready(function () {
+            if (document.cookie.indexOf("infinity_dark_mode") === -1) {
+                dark = false;
+                disable_dark_mode();
+                return;
+            }
+            if (document.cookie.indexOf("infinity_dark_mode=0") > -1) { // If disabled
+                dark = false;
+                disable_dark_mode();
+                return;
+            } else if (document.cookie.indexOf("infinity_dark_mode=1") > -1) {
+                dark = true;
+                enable_dark_mode();
+                return;
+            }
+        });
+        document.addEventListener('DOMContentLoaded', () => {
+            (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
+                $notification = $delete.parentNode;
+
+                $delete.addEventListener('click', () => {
+                    $notification.parentNode.removeChild($notification);
+                });
+            });
+        });
+    </script>
+
+</body>
+
 </html>
