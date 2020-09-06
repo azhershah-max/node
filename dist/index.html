@@ -207,11 +207,12 @@
             $('#submit').click(function () {
                 fetchData().then((data) => {
                     $('#submit').removeClass('is-loading');
+                    $('#submit').addClass('is-disabled');
                     console.log(data);
                     for (i = 0; i < data.videoaudio.length; i++) {
                         var video = data.videoaudio[i];
                         var details = "<td><a href='"+video.url+"'><button class='button is-danger'>Download "+video.qualityLabel+"."+video.container+"</button></a></td>";
-                        $('.videoaudio-data').html(details);
+                        $('.videoaudio-data').append(details);
                         $('.videoaudio-container').removeClass('is-hidden');
                     }
                     
@@ -223,7 +224,7 @@
                          var quality = 'audio-file';   
                         }
                         var ofdetails = "<tr><td><a href='"+of.url+"'><button class='button is-danger'>Download "+quality+"."+of.mimeType.match(/(?:.*\/)(.*?)(?:;.*)/)[1]+"</button></a></td></tr>";
-                        $('.otherFormats-data').html(ofdetails);
+                        $('.otherFormats-data').append(ofdetails);
                         $('.otherFormats-container').removeClass('is-hidden');
                     }
                 });
