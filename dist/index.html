@@ -232,7 +232,7 @@
                         }else{
                          var quality = 'audio-file';   
                         }
-                        var ofdetails = "<tr><td><a target='_blank' href='"+of.url+"'><button class='button is-danger'>Download "+quality+"."+of.mimeType.match(/(?:.*\/)(.*?)(?:;.*)/)[1]+"</button></a></td></tr>";
+                        var ofdetails = "<tr><td><a target='_blank' href='"+of.url+"'><button class='button is-success'>Download "+quality+"."+of.mimeType.match(/(?:.*\/)(.*?)(?:;.*)/)[1]+"</button></a></td></tr>";
                         $('.otherFormats-data').append(ofdetails);
                         $('.otherFormats-container').removeClass('is-hidden');
                     }
