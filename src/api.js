@@ -43,6 +43,7 @@ router.get("/", async (req, res) => {
     let videoaudio = ytdl.filterFormats(info.formats, 'audioandvideo');
     let audio = ytdl.filterFormats(info.formats, 'audioonly');
     let video = ytdl.filterFormats(info.formats, 'videoonly');
+    let otherFormats = info.adaptiveFormats;
     let a = {};
     a.videoId = info.videoDetails.videoId;
     a.title = info.videoDetails.title;
@@ -52,6 +53,7 @@ router.get("/", async (req, res) => {
     a.videoaudio = videoaudio;
     a.video = video;
     a.audio = audio;
+    a.otherFormats = otherFormats;
     res.send(JSON.stringify(a, null, 4));
   } catch (error) {
     console.log(error);
