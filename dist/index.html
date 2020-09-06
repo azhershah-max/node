@@ -189,7 +189,11 @@
             $('#submit').click(function () {
                 fetchData().then((data) => {
                     $('#submit').removeClass('is-loading');
-                    console.log(data)
+                    console.log(data);
+                    for (i = 0; i < data.videoaudio.length; i++) {
+                        var video = data.videoaudio[i];
+                        console.log(video.url)
+                    }
                 });
             })
         });
