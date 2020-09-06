@@ -88,7 +88,7 @@
                 </div>
             </div>
 
-            <div class="notification is-warning" style="text-align:center;margin-top:15px;margin-bottom:0px">
+            <div class="notification notification0 is-warning" style="text-align:center;margin-top:15px;margin-bottom:0px">
                 <button class="delete"></button>
                 This site is <strong>Under construction</strong>, and will soon be live for use. You can use it to
                 download videos from youtube free in different formats.
@@ -314,7 +314,7 @@
             }
         });
         document.addEventListener('DOMContentLoaded', () => {
-            (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
+            (document.querySelectorAll('.notification0 .delete') || []).forEach(($delete) => {
                 $notification = $delete.parentNode;
 
                 $delete.addEventListener('click', () => {
