@@ -217,7 +217,12 @@
                     
                     for (i = 0; i < data.otherFormats.length; i++) {
                         var of = data.otherFormats[i];
-                        var ofdetails = "<tr><td><a href='"+of.url+"'><button class='button is-danger'>Download "+of.qualityLabel+"."+of.mimeType.match(/(?:.*\/)(.*?)(?:;.*)/)[1]+"</button></a></td></tr>";
+                        if(of.qualityLabel){
+                         var quality = of.qualityLabel;   
+                        }else{
+                         var quality = 'audio-file';   
+                        }
+                        var ofdetails = "<tr><td><a href='"+of.url+"'><button class='button is-danger'>Download "+quality+"."+of.mimeType.match(/(?:.*\/)(.*?)(?:;.*)/)[1]+"</button></a></td></tr>";
                         $('.otherFormats-data').html(ofdetails);
                         $('.otherFormats-container').removeClass('is-hidden');
                     }
