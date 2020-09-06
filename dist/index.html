@@ -224,7 +224,6 @@
                 fetchData().then((data) => {
                     $('#submit').removeClass('is-loading');
                     $('#submit').attr('disabled', '');
-                    console.log(data);
                     for (i = 0; i < data.videoaudio.length; i++) {
                         var video = data.videoaudio[i];
                         var details = "<td><a target='_blank' href='"+video.url+"'><button class='button is-warning is-rounded'>Download "+video.qualityLabel+"."+video.container+"</button></a></td>";
