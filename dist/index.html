@@ -211,14 +211,14 @@
                     for (i = 0; i < data.videoaudio.length; i++) {
                         var video = data.videoaudio[i];
                         var details = "<td><a href='"+video.url+"'><button class='button is-danger'>Download "+video.qualityLabel+"."+video.container+"</button></a></td>";
-                        $('.videoaudio-data').append(details);
+                        $('.videoaudio-data').html(details);
                         $('.videoaudio-container').removeClass('is-hidden');
                     }
                     
                     for (i = 0; i < data.otherFormats.length; i++) {
                         var of = data.otherFormats[i];
                         var ofdetails = "<tr><td><a href='"+of.url+"'><button class='button is-danger'>Download "+of.qualityLabel+"."+of.mimeType.match(/(?:.*\/)(.*?)(?:;.*)/)[1]+"</button></a></td></tr>";
-                        $('.otherFormats-data').append(ofdetails);
+                        $('.otherFormats-data').html(ofdetails);
                         $('.otherFormats-container').removeClass('is-hidden');
                     }
                 });
