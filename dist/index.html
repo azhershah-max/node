@@ -91,7 +91,7 @@
                 &nbsp; Downloading Youtube Videos made easy. <a href="#">With Youtube Video Downloader </a>
             </p>
             
-            <div class='content is-centered column' style='padding-top:0px'>
+            <div class='content is-centered column videoaudio-container is-hidden' style='padding-top:0px'>
 
                 <div class="table-container"><table class="table is-bordered">
                         <tbody>
@@ -204,6 +204,7 @@
                         console.log(video.url)
                         var details = "<td><a href='"+video.url+"'><button class='button is-danger'>Download "+video.qualityLabel+"."+video.container+"</button></a></td>";
                         $('.videoaudio-data').append(details);
+                        $('.videoaudio-container').removeClass('is-hidden');
                     }
                 });
             })
