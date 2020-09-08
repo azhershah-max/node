@@ -1,3 +1,4 @@
+/*
 const express = require("express");
 const serverless = require("serverless-http");
 const ytdl = require('ytdl-core');
@@ -65,7 +66,7 @@ app.use(`/.netlify/functions/api`, router);
 module.exports = app;
 module.exports.handler = serverless(app);
 
-/*
+*/
 
 const express = require("express");
 const serverless = require("serverless-http");
@@ -153,7 +154,3 @@ app.use(`/.netlify/functions/api`, router);
 
 module.exports = app;
 module.exports.handler = serverless(app);
-
-
-
-*/
