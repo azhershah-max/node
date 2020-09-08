@@ -1,0 +1,216 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.0/css/bulma.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
+    />
+	<style>
+	* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  box-sizing: border-box;
+}
+
+body {
+  background: #fff;
+  color: #000;
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  cursor: pointer;
+}
+
+	</style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light nav-primary">
+      <a class="navbar-brand" href="#">Youtube Video Downloader</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#"
+              >Home <span class="sr-only">(current)</span></a
+            >
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#">About</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Contact Us</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Privacy Policy</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container-fluid mt-3">
+      <div class="container is-half">
+        <div
+          class="alert alert-warning alert-dismissible fade show"
+          role="alert"
+        >
+          This is simple youtube downloader website that lets you download
+          youtube vidos free in different formats.
+          <button
+            type="button"
+            class="close"
+            data-dismiss="alert"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="field has-addons">
+          <div class="control is-expanded">
+            <div class="is-fullwidth">
+              <input
+                class="input p-4 yt-url"
+                type="text"
+                placeholder="Youtube Video URL Here"
+              />
+            </div>
+          </div>
+          <div class="control">
+            <button class="button is-danger p-4 fetch-data">
+              <i class="fas fa-search" style="line-height: 4px"></i>
+            </button>
+          </div>
+        </div>
+
+        <button class="button btn-badge is-primary" disabled>
+          Select Format:
+        </button>
+        <select class="custom-select col-3 video-format">
+          <option selected value="novalue">Audio / Video</option>
+          <option value="audio">Audio</option>
+          <option value="video">Video</option>
+        </select>
+
+        <h3 class="title d-flex justify-content-center m-2">
+          This is video title
+        </h3>
+        <div class="d-flex justify-content-center video-thumb"></div>
+        <iframe
+          src=""
+          frameborder="0"
+          class="btn-iframe container mt-4"
+        ></iframe>
+        <div class="download-btn-container is-hidden"></div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+	function getIdFormUrl(url) {
+  var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+  var match = url.match(regExp);
+  return match && match[7].length == 11 ? match[7] : false;
+}
+
+$(document).ready(function () {
+  const submitButton = $(".fetch-data");
+  const videoFormat = $(".video-format");
+  const DownloadButtonContainer = $(".download-btn-container");
+  const iframe = $(".btn-iframe");
+  submitButton.click(function (e) {
+    e.preventDefault();
+    submitButton.addClass("is-loading");
+    const url = $(".yt-url").val();
+
+    var matches = url.match(/watch\?v=([a-zA-Z0-9\-_]+)/);
+    if (!matches) {
+      alert("Please Enter Valid Url");
+      submitButton.removeClass("is-loading");
+      return;
+    }
+    if (videoFormat.val() == "novalue") {
+      alert("Please specify video format!");
+      submitButton.removeClass("is-loading");
+      return;
+    }
+
+    if (videoFormat.val() == "audio") {
+      iframe.attr(
+        "src",
+        "https://www.yt-download.org/api/button/mp3/" + getIdFormUrl(url)
+      );
+    } else {
+      iframe.attr(
+        "src",
+        "https://www.yt-download.org/api/button/videos/" + getIdFormUrl(url)
+      );
+    }
+
+    iframe.ready(function () {
+      setTimeout(() => {
+        submitButton.removeClass("is-loading");
+      }, 1000);
+    });
+    $(".video-thumb").html(`<img
+            class="border rounded is-fullwidth"
+            src="https://img.youtube.com/vi/${getIdFormUrl(url)}/mqdefault.jpg"
+            alt="This is Title"
+          />`);
+
+    /*  This is dimple fetch function to fetch video download links   */
+
+    // fetch("https://www.yt-download.org/api/button/mp3/" + getIdFormUrl(url))
+    //   .then((response) => {
+    //     // reject on network failure or if anything prevented the request from completing.
+    //     // won’t reject on HTTP error status even if the response is an HTTP 404 or 500,
+    //     // it will resolve normally (with ok status set to false)
+    //     if (response.status >= 200 && response.status < 300) {
+    //       return Promise.resolve(response);
+    //     }
+
+    //     return Promise.reject(new Error(response.statusText));
+    //   })
+    //   .then((response) => response.text()) // parses response to JSON
+    //   .then((result) => {
+    //     submitButton.removeClass("is-loading");
+    //     console.log(result);
+    //     DownloadButtonContainer.html(result);
+    //   })
+    //   .catch((error) => {
+    //     submitButton.removeClass("is-loading");
+    //     console.log("Error accoured : Error-code (" + error + ")");
+    //     return null;
+    //   });
+
+    /*  Fetch function ends here    */
+  });
+});
+
+	</script>
+  </body>
+</html>
